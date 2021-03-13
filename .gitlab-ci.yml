@@ -1,7 +1,7 @@
 variables:
   BRANCH: $CI_COMMIT_REF_SLUG
   SHORT_SHA: $CI_COMMIT_SHORT_SHA
-  SERVICE_NAME: unipay-frontend
+  SERVICE_NAME: test-backend
   GITLAB_IMAGE: $CI_REGISTRY_IMAGE/${SERVICE_NAME}
   GCP_IMAGE: gcr.io/learnify-core/${SERVICE_NAME}
 
