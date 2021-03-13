@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    container_name: members_management_backend
+#    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    external_links:
+      - database
+  database:
+    container_name: members_management_database
+    image: mongo
+    ports:
+      - '27017:27017'
