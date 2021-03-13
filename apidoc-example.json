@@ -1,0 +1,7 @@
+{
+  "name": "test-api",
+  "version": "0.1.0",
+  "description": "Node Rest Interview Project API docs",
+  "title": "Node Rest Interview Project API docs",
+  "url" : "http://localhost:8099/api/v1"
+}
