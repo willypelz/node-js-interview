@@ -36,7 +36,7 @@ try {
 }
 
 
-// Setup server port
+// Setup  server port
 const port = config.port;
 // Application Route
 const apiRoutes = require("./app/routes/index");
