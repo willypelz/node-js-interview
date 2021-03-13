@@ -34,19 +34,13 @@ build:
     - docker push $GITLAB_IMAGE:latest
     - docker push $GCP_IMAGE:$SHORT_SHA
     - docker push $GCP_IMAGE:latest
-#  only:
-#    - master
-
 
 test:
   image: "$GITLAB_IMAGE:$SHORT_SHA"
   stage: test
   script:
     - echo "this is testing stage passed"
-#    - cd /var/www/html
-#    - npm run app:test
-#  except:
-#    - master
-#    - dev
-#    - testing
+
+
+
 
