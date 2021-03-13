@@ -31,11 +31,9 @@ build:
     - docker build -t "$GITLAB_IMAGE:$SHORT_SHA" -t "$GITLAB_IMAGE:latest" -t "$GCP_IMAGE:$SHORT_SHA" -t "$GCP_IMAGE:latest"  --cache-from "$GITLAB_IMAGE:latest"  .
     - docker push "$GITLAB_IMAGE:$SHORT_SHA"
     - docker push $GITLAB_IMAGE:latest
-    - docker push $GCP_IMAGE:$SHORT_SHA
-    - docker push $GCP_IMAGE:latest
 
 test:
-  image: "$GITLAB_IMAGE:$SHORT_SHA"
+  image: "$GITLAB_IMAGE:latest"
   stage: test
   script:
     - echo "this is testing stage passed"
