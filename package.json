@@ -1,0 +1,50 @@
+{
+  "name": "node-rest-interview-project",
+  "version": "1.0.0",
+  "description": "Node Rest Interview Project API",
+  "main": "app.js",
+  "scripts": {
+    "docs": "apidoc -i . -o apidoc/ -e node_modules/",
+    "seed": "md-seed run -d",
+    "start": "nodemon app"
+  },
+  "keywords": [
+    "api",
+    "test",
+    "restful",
+    "vending",
+    "machine"
+  ],
+  "author": "Asefon Michael - test",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/node": "^5.27.0",
+    "@sentry/tracing": "^5.27.0",
+    "amqplib": "^0.6.0",
+    "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "joi": "^14.3.1",
+    "jwt-simple": "^0.5.6",
+    "lodash": "^4.17.20",
+    "md5": "^2.3.0",
+    "moment-timezone": "^0.5.32",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.7",
+    "mongoose-data-seed": "^2.1.6",
+    "mongoose-delete": "^0.5.2",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.5.0",
+    "nodemon": "^2.0.4",
+    "qrcode": "^1.4.4",
+    "twilio": "^3.55.1",
+    "uuidv4": "^6.2.3"
+  },
+  "mdSeed": {
+    "seedersFolder": "./app/seeders/api/v1"
+  }
+}
