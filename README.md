@@ -63,7 +63,7 @@ On application start, tables for all entities will be created.
 ## Start application
 
 - `npm start`
-- Test api with `http://localhost:3000/api/companies` in your favourite browser
+- Test api with `http://localhost:3000` in your favourite browser
 
 ----------
  
@@ -76,10 +76,28 @@ On application start, tables for all entities will be created.
  
 The second way of setting the project which is running it on docker
 
+Clone the repository
+
+    git clone https://gitlab.com/codelittinc/node-rest-interview-project-asefon-michael.git
+
+Switch to the repo folder
+
+    cd node-rest-interview-project-asefon-michael
+    
+### building and running the project
+
 `` docker-compose up --build ``
 
-to build and run the project together in docker.
+this build and run the project together in docker container.
 
+     1. members_management_backend
+     2. members_management_database
+
+## Start application
+
+- `npm start`
+- Test api with `http://localhost:3000` in your favourite browser
+ 
 
 ## API Documentation/access ( API docs)
 
