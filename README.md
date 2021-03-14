@@ -1,32 +1,91 @@
-## Instructions
+# Node test application.
+Application that has an API Client + Server using Node using the REST architecture.
 
-The goal of this exercise is to create an API Client + Server using Node using the REST arquitecture.
+# Getting started
 
-### The Task
+There are two ways to set the project up and running the first one is the manual project setup 
+and the other one is the docker setup.
 
-In this task, we are building the full stack of an application that helps us managing our team using REST.
+## Installation A
 
-#### Features and Requirements
-- A member has a name and a type the late one can be an employee or a contractor - if it's a contractor, the duration of the contract needs to be saved, and if it's an employee we need to store their role, for instance: Software Engineer, Project Manager and so on.
-- A member can be tagged, for instance: C#, Angular, General Frontend, Seasoned Leader and so on. (Tags will likely be used as filters later, so keep that in mind)
+Clone the repository
 
-We need to offer a REST CRUD for all the information above.
+    git clone https://gitlab.com/codelittinc/node-rest-interview-project-asefon-michael.git
 
-#### Notes:
+Switch to the repo folder
 
-1. You can use any Node framework
-2. Make sure to provide a tutorial on how to run your application
-3. Feel free to use any database
+    cd node-rest-interview-project-asefon-michael
+    
+Install dependencies
+    
+    npm install
 
-#### Bonus points:
+Copy config file 
 
-1. If you add automated tests
-2. If you provide a Docker image
+    cp .env.example .env
+    
+----------
 
-## F.A.Q.
+## Database
+    
+The project implements No-sql database(mongoDB)
 
-### How do you evaluate the exercise?
-Our evaluation is based on many aspects, such as general approach adopted, quality of code, use of best practices, capabilities to keep the code simple and maintainable.
 
-### How can I deliver the exercise?
-To deliver the exercise, you should clone this repository and work on a new branch. When you'll consider it completed, just push the branch and open a Pull Request.
+----------
+
+##### mongoDB
+
+----------
+    
+Set mongo database settings in .env
+
+    port=3000,
+    env="development",
+    NODE_ENV="development"
+    mongoURI="mongodb://localhost:27017/members_management"
+    AMQP_URL='amqp://guest:guest@localhost'
+    mqServerUrl='amqp://guest:guest@localhost'
+
+  
+    
+Start local mysql server and create new database 'members_management'
+
+On application start, tables for all entities will be created.
+
+## NPM scripts
+
+- `npm start` - Start application 
+- `npm run test` - run Jest test runner  
+
+----------
+
+
+## Start application
+
+- `npm start`
+- Test api with `http://localhost:3000/api/companies` in your favourite browser
+
+----------
+ 
+ 
+## Installation B
+
+### Requirement 
+ - Docker
+ - RAM (^4gb)
+ 
+The second way of setting the project which is running it on docker
+
+`` docker-compose up --build ``
+
+to build and run the project together in docker.
+
+
+## API Documentation/access ( API docs)
+
+This application documentation can be access in the apidoc folder generated after running the code below
+
+`` npm run docs ``
+
+`` apidoc/index.html``
+----------
