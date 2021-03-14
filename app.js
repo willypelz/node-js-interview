@@ -48,7 +48,7 @@ app.use(express.urlencoded({limit: '50mb', extended: false}));
 app.use('/', apiRoutes);
 
 
-app.use('/docs', express.static(__dirname + '/apidoc'));
+app.use('/docs', express.static(__dirname + '/apidoc/index.html'));
 
 // Launch app to listen to specified port
 app.listen(port, () => {
