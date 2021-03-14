@@ -1,14 +1,16 @@
 let router = require('express').Router();
+const memberRoutes = require('./member');
+const tagRoutes = require('./tag');
 
-router.get('/', function(req, res){
+
+router.get('/', function (req, res) {
     res.json({
-        status: 'API its working',
-        message: "Welcome to testing application server."
+        status: 'version 1 API its working',
+        message: "Version 1"
     });
 });
 
-let v1ApiRoutes = require('./v1-routes');
-
-router.use('/v1',v1ApiRoutes);
+router.use('/members', memberRoutes);
+router.use('/tags', tagRoutes);
 
 module.exports = router;
