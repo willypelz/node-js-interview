@@ -36,7 +36,8 @@ test:
   image: "$GITLAB_IMAGE:latest"
   stage: test
   script:
-    - echo "this is testing stage passed"
+    - ls
+    - npm run test
 
 
 
