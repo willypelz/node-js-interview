@@ -1,4 +1,4 @@
-const {successResponse, errorResponse, responseCode, pagination, page} = require(__utils + 'helpers');
+const {successResponse, errorResponse, responseCode, pagination, page} = require('../utils/helpers');
 
 const TagRepository = require('../repositories/TagRepository');
 
@@ -47,7 +47,7 @@ const updateTagRequest = require('../requests/updateTagRequest');
  */
 exports.addTag = async (request, response) => {
 
-    try {
+    // try {
         const reqBody = request.body;
         const {
             FormattedError, NormalizedValue
@@ -69,13 +69,13 @@ exports.addTag = async (request, response) => {
             'Tag added successfully.',
             tag
         );
-    } catch (err) {
-        return errorResponse(
-            response,
-            responseCode.UNPROCESSABLE_ENTITY,
-            'Error creating tag'
-        );
-    }
+    // } catch (err) {
+    //     return errorResponse(
+    //         response,
+    //         responseCode.UNPROCESSABLE_ENTITY,
+    //         'Error creating tag'
+    //     );
+    // }
 };
 
 /**
@@ -170,13 +170,20 @@ exports.getTags = async (request, response) => {
  */
 exports.getSingleTag = async (request, response) => {
     try {
-        const roles = await (new TagRepository).getTag(request.params.id);
+        const tag = await (new TagRepository).getTag(request.params.id);
+
+        if (!tag)
+            return errorResponse(
+                response,
+                responseCode.NOT_FOUND,
+                'Tag not found'
+            );
 
         return successResponse(
             response,
             responseCode.SUCCESS,
             'details of tag',
-            roles
+            tag
         );
     } catch (err) {
         return errorResponse(

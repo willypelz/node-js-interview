@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const FormValidator = require(__utils + '/formValidator')
+const FormValidator = require( '../utils/formValidator')
 
 /**
  * addMemberRequest

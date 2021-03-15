@@ -1,6 +1,6 @@
 const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
-const config = require(__base +  'config');
+const config = require( '../../config');
 
 // sentry setup
 Sentry.init({

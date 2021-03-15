@@ -10,10 +10,10 @@ const FormValidator = require( '../utils/formValidator')
 const addMemberRequest = new FormValidator({
     name: Joi
         .string()
-        .required(),
+        .optional(),
     type: Joi
         .string()
-        .required()
+        .optional()
         .valid('contractor', 'employee'),
     duration: Joi
         .when('type', {is: 'contractor', then: Joi.string().required()}),

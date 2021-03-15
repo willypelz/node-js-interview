@@ -16,10 +16,10 @@ app.use(cors());
 const config = require("./config");
 
 
-// define directory
-global.__base = __dirname + '/';
-global.__utils = __dirname + '/app/utils/';
-global.__modules = __dirname + '/app/modules/';
+// // define directory
+// global.__base = __dirname + '/';
+// global.__utils = __dirname + '/app/utils/';
+// global.__modules = __dirname + '/app/modules/';
 
 try {
 // Database configuration
@@ -54,3 +54,6 @@ app.use('/docs', express.static(__dirname + '/apidoc/index.html'));
 app.listen(port, () => {
     console.log("Running on port " + port);
 });
+
+
+module.exports = app;

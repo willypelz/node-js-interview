@@ -1,4 +1,4 @@
-const {successResponse, errorResponse, responseCode, pagination, page} = require(__utils + 'helpers');
+const {successResponse, errorResponse, responseCode, pagination, page} = require( '../utils/helpers');
 
 const MemberTagRepository = require('../repositories/MemberTagRepository');
 

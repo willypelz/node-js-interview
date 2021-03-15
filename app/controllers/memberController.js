@@ -1,8 +1,9 @@
-const {successResponse, errorResponse, responseCode, pagination, page} = require(__utils + 'helpers');
+const {successResponse, errorResponse, responseCode, pagination, page} = require('../utils/helpers');
 
 const MemberRepository = require('../repositories/MemberRepository');
 
 const addMemberRequest = require('../requests/addMemberRequest');
+const updateMemberRequest = require('../requests/updateMemberRequest');
 
 
 /**
@@ -13,55 +14,40 @@ const addMemberRequest = require('../requests/addMemberRequest');
  * @apiVersion  0.1.0
  *
  *
- * @apiParam  {String} user_id User unique ID
- * @apiParam  {String} company_id Company unique ID
+ * @apiParam  {String} name Member name
+ * @apiParam  {String} type Type
+ * @apiParam  {String} duration Duration
+ * @apiParam  {String} role Role
  *
  *
  * @apiParamExample  {type} Request Example:
  * {
- *     user_id: "5f7da9656c2e1867628c7bce",
- *     company_id: "5f7da9656c2e1867628c7bce",
+ *     "name": "michael",
+ *     "type": "contractor",
+ *     "duration": "6month",
  * }
  *
  *
  * @apiSuccessExample Success Response
  * HTTP/1.1 201 Ok
- * {
- *      status: "success",
- *      data: {
- *      company_id: "5f7da9656c2e1867628c7bce",
- *       user_id: "5f7da942493872671f2f6493",
- *       createdAt: "2020-10-21T09:20:01.876Z",
- *       updatedAt: "2020-10-21T09:20:01.876Z",
- *       user: {
- *           _id: "5f7da942493872671f2f6493",
- *           first_name: "John",
- *           last_name: "Doe",
- *           email: "john@doe.com",
- *           role: "5f5fc2d8da04a488821aa827",
- *           account_type: "distributor_admin",
- *           createdAt: "2020-10-07T11:40:50.337Z",
- *           updatedAt: "2020-10-07T11:40:50.337Z",
- *       },
- *       company: {
- *           _id: "5f7da9656c2e1867628c7bce",
- *           name: "Blue Company",
- *           address: "S46 Blue company avenue",
- *           type: "distributor",
- *           email: "info1@bluecompany.com",
- *           admin: "5f7da9656c2e1867628c7bcd",
- *           createdAt": "2020-10-07T11:41:25.166Z",
- *           updatedAt": "2020-10-07T11:41:25.166Z",
- *       },
- *       id: "5f8ffd4162482a2e5fa7e7c0"
- *   }
- * }
- *
+ {
+    "status": "success",
+    "message": "Member added successfully.",
+    "data": {
+        "_id": "604f1ed33edb08001f0ae61a",
+        "name": "michael",
+        "type": "contractor",
+        "duration": "6month",
+        "createdAt": "2021-03-15T08:46:11.564Z",
+        "updatedAt": "2021-03-15T08:46:11.564Z",
+        "__v": 0
+    }
+}
  * * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 422 UNPROCESSABLE ENTITY
  *     {
  *       "status": "error",
-         "message": "Error creating Company Admin account",
+         "message": "Error creating member",
  *     }
  *
  */
@@ -106,42 +92,37 @@ exports.addMember = async (request, response) => {
  *
  * @apiSuccessExample Success-Response
  * HTTP/1.1 200 OK
- * {
- *       status: 'success',
- *       data:
- *   [
- *     {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    }
- *  ]
- *   }
+ {
+    "status": "success",
+    "message": "list of members",
+    "data": [
+        {
+            "_id": "604f1ed33edb08001f0ae61a",
+            "name": "michael",
+            "type": "contractor",
+            "duration": "6month",
+            "createdAt": "2021-03-15T08:46:11.564Z",
+            "updatedAt": "2021-03-15T08:46:11.564Z",
+            "__v": 0,
+            "tags": []
+        },
+        {
+            "_id": "604d2c3a87d7da001f2c05ee",
+            "name": "qwer",
+            "type": "employee",
+            "createdAt": "2021-03-13T21:18:50.286Z",
+            "updatedAt": "2021-03-13T21:18:50.286Z",
+            "__v": 0,
+            "tags": []
+        }
+    ]
+}
  *
  * @apiErrorExample {json} Error-Response:
  *    HTTP/1.1 422 UNPROCESSABLE ENTITY
  *    {
  *      status: "false",
- *      message: "error fetching list of users"
+ *      message: "error fetching members"
  *    }
  *
  * @param request
@@ -177,42 +158,26 @@ exports.getMembers = async (request, response) => {
  *
  * @apiSuccessExample Success-Response
  * HTTP/1.1 200 OK
- * {
- *       status: 'success',
- *       data:
- *   [
- *     {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    }
- *  ]
- *   }
+ {
+    "status": "success",
+    "message": "details of member",
+    "data": {
+        "_id": "604f1ed33edb08001f0ae61a",
+        "name": "michael",
+        "type": "contractor",
+        "duration": "6month",
+        "createdAt": "2021-03-15T08:46:11.564Z",
+        "updatedAt": "2021-03-15T08:46:11.564Z",
+        "__v": 0,
+        "tags": []
+    }
+}
  *
  * @apiErrorExample {json} Error-Response:
  *    HTTP/1.1 422 UNPROCESSABLE ENTITY
  *    {
  *      status: "false",
- *      message: "error fetching list of users"
+ *      message: "error fetching member details"
  *    }
  *
  * @param request
@@ -220,13 +185,20 @@ exports.getMembers = async (request, response) => {
  */
 exports.getSingleMember = async (request, response) => {
     try {
-        const roles = await (new MemberRepository).getMember(request.params.id);
+        const member = await (new MemberRepository).getMember(request.params.id);
+
+        if (!member)
+            return errorResponse(
+                response,
+                responseCode.NOT_FOUND,
+                'Member not found'
+            );
 
         return successResponse(
             response,
             responseCode.SUCCESS,
             'details of member',
-            roles
+            member
         );
     } catch (err) {
         return errorResponse(
@@ -246,42 +218,25 @@ exports.getSingleMember = async (request, response) => {
  *
  * @apiSuccessExample Success-Response
  * HTTP/1.1 200 OK
- * {
- *       status: 'success',
- *       data:
- *   [
- *     {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    }
- *  ]
- *   }
+ {
+    "status": "success",
+    "message": "updated member",
+    "data": {
+        "_id": "604f1ed33edb08001f0ae61a",
+        "name": "michael",
+        "type": "contractor",
+        "duration": "6month",
+        "createdAt": "2021-03-15T08:46:11.564Z",
+        "updatedAt": "2021-03-15T08:50:05.371Z",
+        "__v": 0
+    }
+}
  *
  * @apiErrorExample {json} Error-Response:
  *    HTTP/1.1 422 UNPROCESSABLE ENTITY
  *    {
  *      status: "false",
- *      message: "error fetching list of users"
+ *      message: "error updating member"
  *    }
  *
  * @param request
@@ -289,20 +244,32 @@ exports.getSingleMember = async (request, response) => {
  */
 exports.updateMember = async (request, response) => {
     try {
-        const requestParams = request.query;
-        const roles = await (new MemberRepository).updateMember(requestParams.pagination, requestParams.page);
+        const reqBody = request.body;
+        const {
+            FormattedError, NormalizedValue
+        } = updateMemberRequest.validate(reqBody);
+
+        if (FormattedError)
+            return errorResponse(
+                response,
+                response.UNPROCESSABLE_ENTITY,
+                'Validation Error',
+                FormattedError
+            );
+
+        const member = await (new MemberRepository).updateMember(request.params.id, NormalizedValue);
 
         return successResponse(
             response,
             responseCode.SUCCESS,
-            'list of roles',
-            roles
+            'updated member',
+            member
         );
     } catch (err) {
         return errorResponse(
             response,
             responseCode.UNPROCESSABLE_ENTITY,
-            'error fetching roles'
+            'error updating member'
         );
     }
 };
@@ -321,7 +288,7 @@ exports.updateMember = async (request, response) => {
  *    HTTP/1.1 422 UNPROCESSABLE ENTITY
  *    {
  *      status: "false",
- *      message: "Error deleting company user"
+ *      message: "Error deleting member"
  *    }
  *
  *
@@ -329,7 +296,7 @@ exports.updateMember = async (request, response) => {
  *    HTTP/1.1 404 NOT FOUND
  *    {
  *      status: "false",
- *      message: "CompanyUser not found"
+ *      message: "Member not found"
  *    }
  *
  * @param request

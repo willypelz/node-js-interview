@@ -1,4 +1,4 @@
-const config = require(__base + 'config');
+const config = require('../../config');
 const Sentry = require('./logger');
 const fs = require('fs');
 
