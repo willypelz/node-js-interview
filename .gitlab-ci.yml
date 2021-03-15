@@ -3,7 +3,6 @@ variables:
   SHORT_SHA: $CI_COMMIT_SHORT_SHA
   SERVICE_NAME: test-backend
   GITLAB_IMAGE: $CI_REGISTRY_IMAGE/${SERVICE_NAME}
-  GCP_IMAGE: gcr.io/learnify-core/${SERVICE_NAME}
 
 stages:
   - build
@@ -37,7 +36,7 @@ test:
   stage: test
   script:
     - ls
-    - npm run test
+    - docker run $GITLAB_IMAGE:latest sh -c 'npm install -g mocha && npm install && npm test'
 
 
 
