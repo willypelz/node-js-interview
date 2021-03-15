@@ -27,7 +27,7 @@ build:
     - docker pull "$GITLAB_IMAGE:latest" || true
   script:
     # Build and Push the Image
-    - docker build -t "$GITLAB_IMAGE:$SHORT_SHA" -t "$GITLAB_IMAGE:latest" -t "$GCP_IMAGE:$SHORT_SHA" -t "$GCP_IMAGE:latest"  --cache-from "$GITLAB_IMAGE:latest"  .
+    - docker build -t "$GITLAB_IMAGE:$SHORT_SHA" -t "$GITLAB_IMAGE:latest" --cache-from "$GITLAB_IMAGE:latest"  .
     - docker push "$GITLAB_IMAGE:$SHORT_SHA"
     - docker push $GITLAB_IMAGE:latest
 
