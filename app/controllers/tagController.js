@@ -47,7 +47,7 @@ const updateTagRequest = require('../requests/updateTagRequest');
  */
 exports.addTag = async (request, response) => {
 
-    // try {
+    try {
         const reqBody = request.body;
         const {
             FormattedError, NormalizedValue
@@ -69,13 +69,13 @@ exports.addTag = async (request, response) => {
             'Tag added successfully.',
             tag
         );
-    // } catch (err) {
-    //     return errorResponse(
-    //         response,
-    //         responseCode.UNPROCESSABLE_ENTITY,
-    //         'Error creating tag'
-    //     );
-    // }
+    } catch (err) {
+        return errorResponse(
+            response,
+            responseCode.UNPROCESSABLE_ENTITY,
+            'Error creating tag'
+        );
+    }
 };
 
 /**
@@ -203,42 +203,23 @@ exports.getSingleTag = async (request, response) => {
  *
  * @apiSuccessExample Success-Response
  * HTTP/1.1 200 OK
- * {
- *       status: 'success',
- *       data:
- *   [
- *     {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    },
- *    {
- *      name: "Admin",
- *      display_name: "admin",
- *      description: "This is an admin role"
- *      createdAt: "2020-10-20T12:01:44.264Z",
- *       updatedAt: "2020-10-20T12:01:44.264Z",
- *      id: "5f8ed1a83709d21c277e9300"
- *    }
- *  ]
- *   }
+ {
+    "status": "success",
+    "message": "updated tag",
+    "data": {
+        "_id": "604d36acc07eb321334958b3",
+        "name": "c#",
+        "createdAt": "2021-03-13T22:03:24.278Z",
+        "updatedAt": "2021-03-13T22:03:24.278Z",
+        "__v": 0
+    }
+}
  *
  * @apiErrorExample {json} Error-Response:
  *    HTTP/1.1 422 UNPROCESSABLE ENTITY
  *    {
  *      status: "false",
- *      message: "error fetching list of users"
+ *      message: "error updating tag"
  *    }
  *
  * @param request
