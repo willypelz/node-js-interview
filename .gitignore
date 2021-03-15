@@ -6,5 +6,4 @@ node_modules
 apidoc/
 package-lock.json
 .vscode
-images/*
 .DS_Store
