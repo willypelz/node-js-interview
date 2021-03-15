@@ -36,7 +36,7 @@ test:
   stage: test
   script:
     - ls
-    - docker run $GITLAB_IMAGE:latest sh -c 'npm install -g mocha && npm install && npm test'
+    - npm install -g mocha && npm install && npm test
 
 
 
