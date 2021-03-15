@@ -1,5 +1,13 @@
 # Node test application.
 Application that has an API Client + Server using Node using the REST architecture.
+1.  code architecture implemented repository design pattern,
+2.  database: MongoDB
+3.  API: rest
+4.  Test-driven development(TDD): mocha
+5.  Request validation: Joi
+6.  project dockerized;
+7.  docker image pushed to the GitLab container registry automatically which can be found here: 
+``registry.gitlab.com/codelittinc/node-rest-interview-project-asefon-michael/test-backend:latest``
 
 # Getting started
 
